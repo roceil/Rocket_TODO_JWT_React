@@ -10,7 +10,7 @@ module.exports = {
       }
     },
     container:{
-      padding:'12px',
+      padding:'32px',
       center:true
     },
     screens: {

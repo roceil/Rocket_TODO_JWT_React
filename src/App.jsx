@@ -1,12 +1,19 @@
-import { useState } from "react";
-import logo from "./assets/img/logo_lg.svg";
-import "./main.css";
-import Login from "./Login.jsx";
+import { React, useState } from 'react';
+// import logo from './img/logo_lg.svg';
+import './main.css';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
+import IsLogin from './components/isLogin';
+// import SignUp from './components/SignUp';
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('Login');
+
   return (
     <>
-      <Login />
+      {currentPage === 'Login' && (<Login setCurrentPage={setCurrentPage} />)}
+      {currentPage === 'SignUp' && (<SignUp setCurrentPage={setCurrentPage} />)}
+      {currentPage === 'IsLogin' && (<IsLogin setCurrentPage={setCurrentPage} />)}
     </>
   );
 }
