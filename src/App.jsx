@@ -1,19 +1,22 @@
 import { React, useState } from 'react';
-// import logo from './img/logo_lg.svg';
 import './main.css';
-import Login from './components/Login';
-import SignUp from './components/SignUp';
-import IsLogin from './components/isLogin';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import IsLogin from './pages/IsLogin';
 // import SignUp from './components/SignUp';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('Login');
 
+  const checkType = (() => {
+    if (currentPage === 'Login') return <Login setCurrentPage={setCurrentPage} />
+    if (currentPage === 'SignUp') return <SignUp setCurrentPage={setCurrentPage} />
+    if (currentPage === 'IsLogin') return <IsLogin setCurrentPage={setCurrentPage} />
+  })();
+
   return (
     <>
-      {currentPage === 'Login' && (<Login setCurrentPage={setCurrentPage} />)}
-      {currentPage === 'SignUp' && (<SignUp setCurrentPage={setCurrentPage} />)}
-      {currentPage === 'IsLogin' && (<IsLogin setCurrentPage={setCurrentPage} />)}
+      {checkType}
     </>
   );
 }

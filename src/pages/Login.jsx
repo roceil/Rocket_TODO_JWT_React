@@ -1,7 +1,7 @@
 import {React, useState} from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import IsLogin from './isLogin';
+import IsLogin from './IsLogin';
 import logo from '../img/logo_lg.svg';
 import '../main.css';
 
@@ -21,6 +21,7 @@ const LoginApi = async (emailTxt, passwordTxt,setCurrentPage) => {
     alert(message)
     setCurrentPage('IsLogin')
   } catch (error) {
+    console.log(error);
     const { message } = error.response.data
     alert(`${message}，請重新輸入帳號密碼`)
   }
@@ -114,7 +115,7 @@ function Login(props) {
                   });
                   return
                 }
-                LoginApi(emailTxt.value, passwordTxt.value);
+                LoginApi(emailTxt.value, passwordTxt.value,setCurrentPage);
               }}
             />
           </div>

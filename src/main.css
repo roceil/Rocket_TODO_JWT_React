@@ -8,3 +8,9 @@
     @apply bg-primary
   }
 }
+
+@layer components {
+  .tab_active{
+    border-bottom:2px solid black ;
+  }
+}
