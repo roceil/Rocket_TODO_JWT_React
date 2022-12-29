@@ -10,7 +10,7 @@ function List({ todo, setTodo, getData, url, headers, tabPos, setTabPos,totalTod
     <>
 
       <AddToDo getData={getData} url={url} headers={headers} />
-      <ListItem
+      <ListItem 
         setTodo={setTodo}
         todo={todo}
         getData={getData}

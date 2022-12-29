@@ -7,14 +7,15 @@ import List from '../container/List';
 
 const url = 'https://todoo.5xcamp.us/todos';
 
-const headers = {
-  Authorization: localStorage.getItem('authorization'),
-};
+
 
 function IsLogin({ setCurrentPage }) {
   const [tabPos, setTabPos] = useState(`all`);
   const [totalTodo, setTotalTodo] = useState([]);
   const [todo, setTodo] = useState([]);
+  const headers = {
+    Authorization: localStorage.getItem('authorization'),
+  };
   const getData = async () => {
     const res = await axios.get(url, { headers });
     const { todos } = await res.data;

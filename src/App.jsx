@@ -33,15 +33,6 @@ function App() {
     }
   })();
 
-  // const checkType = (() => {
-  //   if (currentPage === 'Login')
-  //     return <Login setCurrentPage={setCurrentPage} />;
-  //   if (currentPage === 'SignUp')
-  //     return <SignUp setCurrentPage={setCurrentPage} />;
-  //   if (currentPage === 'IsLogin')
-  //     return <IsLogin setCurrentPage={setCurrentPage} />;
-  // })();
-
   return <>{checkType}</>;
 }
 

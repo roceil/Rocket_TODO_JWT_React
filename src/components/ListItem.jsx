@@ -4,8 +4,8 @@ import MapItem from './MapItem';
 function ListItem({ todo, getData, url, headers, setTodo, tabPos, setTabPos,totalTodo }) {
   return (
     <>
-      <form id="todoList" className="container max-w-[500px]">
-        <div className="ul_shadow rounded-[10px]">
+      <form id="todoList" className="container max-w-[500px] ">
+        <div className="ul_shadow rounded-[10px] diy-shadow">
           {/* 分頁欄位 */}
           <TabButton
             todo={todo}

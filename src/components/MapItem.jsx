@@ -1,9 +1,8 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import close from '../img/close.svg';
 import axios from 'axios';
 function MapItem({ content, id, getData, url, headers, completed_at }) {
   const isCheck = useRef(completed_at !== null ? true : false);
-
   const deleteData = async (id) => {
     try {
       const res = await axios.delete(`${url}/${id}`, { headers });
@@ -17,7 +16,7 @@ function MapItem({ content, id, getData, url, headers, completed_at }) {
   const completedToggle = async (id) => {
     try {
       const res = await axios.patch(`${url}/${id}/toggle`, {}, { headers });
-      getData()
+      getData();
       console.log(res.data);
     } catch (error) {
       console.log(error);
@@ -39,7 +38,9 @@ function MapItem({ content, id, getData, url, headers, completed_at }) {
           }}
         />
         {/* <!-- 內容文字 --> */}
-        <p className="ml-4">{content}</p>
+        <p className={`ml-4 ${completed_at !== null ? 'complete_todo' : ''}`}>
+          {content}
+        </p>
       </div>
 
       {/* 右邊刪除鈕 */}

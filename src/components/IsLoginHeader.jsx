@@ -5,9 +5,10 @@ import '../main.css';
 const url = 'https://todoo.5xcamp.us/users';
 
 
-const userName = localStorage.getItem(`userName`)
+
 
 function IsLoginHeader({ setCurrentPage }) {
+  const userName = localStorage.getItem(`userName`)
   const clearLocalStorage = () => {
     localStorage.clear()
     alert('登出成功')
