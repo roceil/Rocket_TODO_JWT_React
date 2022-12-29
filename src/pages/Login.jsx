@@ -15,8 +15,10 @@ const LoginApi = async (emailTxt, passwordTxt,setCurrentPage) => {
         password: passwordTxt,
       },
     });
-    const token = res.headers.authorization;
-    localStorage.setItem('authorization', token);
+    const { nickname } = res.data
+    const { authorization } = res.headers
+    localStorage.setItem('authorization', authorization);
+    localStorage.setItem('userName', nickname);
     const { message } = res.data
     alert(message)
     setCurrentPage('IsLogin')

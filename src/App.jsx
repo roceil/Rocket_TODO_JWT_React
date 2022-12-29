@@ -6,19 +6,43 @@ import IsLogin from './pages/IsLogin';
 // import SignUp from './components/SignUp';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('Login');
+  const [currentPage, setCurrentPage] = useState();
 
   const checkType = (() => {
-    if (currentPage === 'Login') return <Login setCurrentPage={setCurrentPage} />
-    if (currentPage === 'SignUp') return <SignUp setCurrentPage={setCurrentPage} />
-    if (currentPage === 'IsLogin') return <IsLogin setCurrentPage={setCurrentPage} />
+    switch (currentPage) {
+      case 'Login': {
+        return <Login setCurrentPage={setCurrentPage} />;
+        break;
+      }
+      case 'SignUp': {
+        return <SignUp setCurrentPage={setCurrentPage} />;
+        break;
+      }
+      case 'IsLogin': {
+        return <IsLogin setCurrentPage={setCurrentPage} />;
+        break;
+      }
+      default: {
+        if (localStorage.getItem('authorization')) {
+          setCurrentPage(`IsLogin`);
+        } else {
+          setCurrentPage('Login');
+        }
+        break;
+      }
+    }
   })();
 
-  return (
-    <>
-      {checkType}
-    </>
-  );
+  // const checkType = (() => {
+  //   if (currentPage === 'Login')
+  //     return <Login setCurrentPage={setCurrentPage} />;
+  //   if (currentPage === 'SignUp')
+  //     return <SignUp setCurrentPage={setCurrentPage} />;
+  //   if (currentPage === 'IsLogin')
+  //     return <IsLogin setCurrentPage={setCurrentPage} />;
+  // })();
+
+  return <>{checkType}</>;
 }
 
 export default App;

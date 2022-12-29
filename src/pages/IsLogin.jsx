@@ -1,16 +1,17 @@
 import { React, useState, useEffect } from 'react';
+import IsLoginHeader from '../components/IsLoginHeader';
 import axios from 'axios';
 import '../main.css';
 
 import List from '../container/List';
 
 const url = 'https://todoo.5xcamp.us/todos';
+
 const headers = {
-  Authorization:
-    'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDg0Iiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjcyMTkzNDkxLCJleHAiOjE2NzM0ODk0OTEsImp0aSI6ImFhZDk3YmIzLTRhNWQtNDEyYS05MDRkLWFkMzBkODVkNTM0YyJ9.B2U_CJVmBb56DvbcGn6tyC8kboQPBRBVkrdYX5xk2R0',
+  Authorization: localStorage.getItem('authorization'),
 };
 
-function IsLogin() {
+function IsLogin({ setCurrentPage }) {
   const [tabPos, setTabPos] = useState(`all`);
   const [totalTodo, setTotalTodo] = useState([]);
   const [todo, setTodo] = useState([]);
@@ -27,30 +28,30 @@ function IsLogin() {
 
   useEffect(() => {
     switch (tabPos) {
-      default:{
+      default: {
         setTodo(totalTodo);
-        break
+        break;
       }
       case 'unFinish': {
         const filterData = totalTodo.filter((item) => {
           return item.completed_at === null;
         });
         setTodo(filterData);
-        break
+        break;
       }
       case 'finished': {
         const filterData = totalTodo.filter((item) => {
           return item.completed_at !== null;
         });
         setTodo(filterData);
-        break
+        break;
       }
-
     }
   }, [tabPos]);
 
   return (
     <>
+      <IsLoginHeader setCurrentPage={setCurrentPage} />
       <List
         todo={todo}
         setTodo={setTodo}
