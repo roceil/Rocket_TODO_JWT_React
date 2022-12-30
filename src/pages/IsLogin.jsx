@@ -7,8 +7,6 @@ import List from '../container/List';
 
 const url = 'https://todoo.5xcamp.us/todos';
 
-
-
 function IsLogin({ setCurrentPage }) {
   const [tabPos, setTabPos] = useState(`all`);
   const [totalTodo, setTotalTodo] = useState([]);
@@ -50,9 +48,25 @@ function IsLogin({ setCurrentPage }) {
     }
   }, [tabPos]);
 
+  useEffect(() => {
+    if (tabPos === 'unFinish') {
+      const filterData = totalTodo.filter((item) => {
+        return item.completed_at === null;
+      });
+      setTodo(filterData);
+      return
+    }
+    if (tabPos === 'finished') {
+      const filterData = totalTodo.filter((item) => {
+        return item.completed_at !== null;
+      });
+      setTodo(filterData);
+      return
+    }
+  }, [totalTodo]);
+
   return (
-    <>
-    <h1>123</h1>
+    <div className="h-screen md:linear-g">
       <IsLoginHeader setCurrentPage={setCurrentPage} />
       <List
         todo={todo}
@@ -64,7 +78,7 @@ function IsLogin({ setCurrentPage }) {
         setTabPos={setTabPos}
         totalTodo={totalTodo}
       />
-    </>
+    </div>
   );
 }
 

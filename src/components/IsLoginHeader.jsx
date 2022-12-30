@@ -15,7 +15,7 @@ function IsLoginHeader({ setCurrentPage }) {
     setCurrentPage(`Login`)
   };
   return (
-    <main className="container mt-2  flex justify-between">
+    <main className="container pt-2  flex justify-between">
       <img className="max-w-[242.51px]" src={logo} alt="logo" />
       <div className="flex items-center">
         <p className="hidden font-bold mr-6 md:block">{userName}的待辦事項</p>
