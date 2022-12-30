@@ -45,7 +45,7 @@ function MapItem({ content, id, getData, url, headers, completed_at }) {
   return (
     <li className="py-4 border-b border-[#E5E5E5] flex items-center justify-between">
       {/* 左邊區塊 */}
-      <div className="flex ">
+      <div className="flex items-center">
         {/* checkbox */}
         <input
 
