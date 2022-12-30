@@ -4,8 +4,8 @@
 
 
 @layer base {
-  body {
-    @apply bg-primary md:linear-g
+  #root {
+    @apply bg-primary 
   }
 }
 
