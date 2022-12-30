@@ -1,7 +1,16 @@
 import TabButton from './TabButton';
 import ListFooter from './ListFooter';
 import MapItem from './MapItem';
-function ListItem({ todo, getData, url, headers, setTodo, tabPos, setTabPos,totalTodo }) {
+function ListItem({
+  todo,
+  getData,
+  url,
+  headers,
+  setTodo,
+  tabPos,
+  setTabPos,
+  totalTodo,
+}) {
   return (
     <>
       <form id="todoList" className="container max-w-[500px] ">

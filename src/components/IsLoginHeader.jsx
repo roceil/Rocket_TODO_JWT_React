@@ -5,7 +5,6 @@ import '../main.css';
 
 const url = 'https://todoo.5xcamp.us/users';
 
-
 const logout=()=>{
   Swal.fire({
     icon: 'success',
