@@ -1,5 +1,5 @@
 import AddToDo from '../components/AddToDo';
-import ListItem from '../components/ListItem';
+import ListItem from './ListItem';
 
 
 function List({ todo, setTodo, getData, url, headers, tabPos, setTabPos,totalTodo}) {

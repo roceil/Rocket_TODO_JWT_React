@@ -1,6 +1,6 @@
-import TabButton from './TabButton';
-import ListFooter from './ListFooter';
-import MapItem from './MapItem';
+import TabButton from '../components/TabButton';
+import ListFooter from '../components/ListFooter';
+import MapItem from '../components/MapItem';
 function ListItem({
   todo,
   getData,

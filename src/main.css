@@ -2,30 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   body {
-    @apply bg-primary 
+    @apply bg-primary;
   }
-  input, select, textarea, button {
+  input,
+  select,
+  textarea,
+  button {
     font-size: 16px;
   }
 }
 
 @layer components {
-  .tab_active{
-    border-bottom:2px solid black ;
+  .tab_active {
+    border-bottom: 2px solid black;
   }
   .complete_todo {
-    @apply text-[#9F9A91] line-through
+    @apply text-[#9F9A91] line-through;
   }
 }
 
-@layer utilities{
+@layer utilities {
   .linear-g {
-    background: linear-gradient(172.7deg, #FFD370 5.12%, #FFD370 53.33%, #FFD370 53.44%, #FFFFFF 53.45%, #FFFFFF 94.32%)
+    background: linear-gradient(
+      172.7deg,
+      #ffd370 5.12%,
+      #ffd370 53.33%,
+      #ffd370 53.44%,
+      #ffffff 53.45%,
+      #ffffff 94.32%
+    );
   }
   .diy-shadow {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+  }
+  .checkbox-after {
+    @apply after:absolute after:border after:border-gray-400 after:rounded-[5px] after:w-5 after:h-5 checked:after:bg-[url('https://raw.githubusercontent.com/roceil/Rocket_TODO_JWT_React/main/src/img/check%201.svg')] after:top-[50%]  checked:after:border-0 after:bg-no-repeat after:bg-center after:translate-y-[-50%];
   }
 }

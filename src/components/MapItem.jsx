@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import close from '../img/close.svg';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+// import check from "./check.svg"
 
 function MapItem({ content, id, getData, url, headers, completed_at }) {
   const isCheck = useRef(completed_at !== null ? true : false);
@@ -44,13 +45,14 @@ function MapItem({ content, id, getData, url, headers, completed_at }) {
   return (
     <li className="py-4 border-b border-[#E5E5E5] flex items-center justify-between">
       {/* 左邊區塊 */}
-      <div className="flex">
+      <div className="flex ">
         {/* checkbox */}
         <input
+
           id="checkbox"
           defaultChecked={isCheck.current}
           type="checkbox"
-          className="w-5"
+          className={`appearance-none w-5 relative checkbox-after `}
           onClick={() => {
             completedToggle(id);
           }}
