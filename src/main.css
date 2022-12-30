@@ -38,6 +38,6 @@
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
   }
   .checkbox-after {
-    @apply after:absolute after:border after:border-gray-400 after:rounded-[5px] after:w-5 after:h-5 checked:after:bg-[url('https://raw.githubusercontent.com/roceil/Rocket_TODO_JWT_React/main/src/img/check%201.svg')] after:top-[50%]  checked:after:border-0 after:bg-no-repeat after:bg-center after:translate-y-[-50%];
+    @apply after:absolute after:border after:border-gray-400 after:rounded-[5px] after:w-5 after:h-5 checked:after:bg-[url('https://raw.githubusercontent.com/roceil/Rocket_TODO_JWT_React/main/src/img/check%201.svg')]  checked:after:border-0 after:bg-no-repeat after:bg-center ;
   }
 }
