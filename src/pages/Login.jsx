@@ -33,7 +33,7 @@ function Login(props) {
   const { setCurrentPage } = props;
   return (
     <>
-      <div className="flex w-full h-full justify-center items-center container">
+      <div className="flex h-screen justify-center items-center container">
         <img className="hidden md:block md:mr-[70px]" src={left} alt="" />
         <div className="w-full mt-12 mb-8 md:max-w-[304px]">
           <div className="flex flex-col justify-center items-center ">

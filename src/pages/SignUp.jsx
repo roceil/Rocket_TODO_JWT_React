@@ -49,8 +49,8 @@ function SignUp(props) {
   const { setCurrentPage } = props;
 
   return (
-    <div className="w-full h-full flex justify-center items-center container">
-      <img className='hidden md:mr-[70px] md:block' src={left} alt="" />
+    <div className=" h-screen flex justify-center items-center container">
+      <img className="hidden md:mr-[70px] md:block" src={left} alt="" />
 
       {/* 右邊區塊 */}
       <div className="md:max-w-[304px] ">

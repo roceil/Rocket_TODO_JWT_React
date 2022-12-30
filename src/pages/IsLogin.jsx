@@ -51,8 +51,7 @@ function IsLogin({ setCurrentPage }) {
   }, [tabPos]);
 
   return (
-    <>
-    <h1>123</h1>
+    <div className='h-screen md:linear-g'>
       <IsLoginHeader setCurrentPage={setCurrentPage} />
       <List
         todo={todo}
@@ -64,7 +63,7 @@ function IsLogin({ setCurrentPage }) {
         setTabPos={setTabPos}
         totalTodo={totalTodo}
       />
-    </>
+    </div>
   );
 }
 
