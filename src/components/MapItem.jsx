@@ -1,10 +1,26 @@
 import { useRef } from 'react';
 import close from '../img/close.svg';
 import axios from 'axios';
-
+import Swal from 'sweetalert2';
 
 function MapItem({ content, id, getData, url, headers, completed_at }) {
   const isCheck = useRef(completed_at !== null ? true : false);
+  const deleteItemConfirm = (id) => {
+    Swal.fire({
+      title: '是否刪除待辦',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: '取消',
+      confirmButtonText: '確認刪除',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('刪除成功!');
+        deleteData(id);
+      }
+    });
+  };
   const deleteData = async (id) => {
     try {
       const res = await axios.delete(`${url}/${id}`, { headers });
@@ -50,7 +66,7 @@ function MapItem({ content, id, getData, url, headers, completed_at }) {
         type="button"
         className="hover:opacity-50"
         onClick={() => {
-          deleteData(id);
+          deleteItemConfirm(id);
         }}
       >
         <img src={close} alt="deleteBtn" />

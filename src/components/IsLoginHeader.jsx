@@ -1,18 +1,29 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 import logo from '../img/logo_lg.svg';
 import '../main.css';
 
 const url = 'https://todoo.5xcamp.us/users';
 
 
-
+const logout=()=>{
+  Swal.fire({
+    icon: 'success',
+    title: '登出成功',
+    showConfirmButton: false,
+    timer: 1500
+  })
+}
 
 function IsLoginHeader({ setCurrentPage }) {
   const userName = localStorage.getItem(`userName`)
   const clearLocalStorage = () => {
     localStorage.clear()
-    alert('登出成功')
-    setCurrentPage(`Login`)
+    logout()
+    setTimeout(()=>{
+      setCurrentPage(`Login`)
+    },1700)
+    
   };
   return (
     <main className="container pt-2  flex justify-between">
