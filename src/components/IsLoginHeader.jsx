@@ -26,7 +26,7 @@ function IsLoginHeader({ setCurrentPage }) {
     
   };
   return (
-    <main className="container pt-2  flex justify-between">
+    <div className="container pt-[17.45px]  flex justify-between">
       <img className="max-w-[242.51px]" src={logo} alt="logo" />
       <div className="flex items-center">
         <p className="hidden font-bold mr-6 md:block">{userName}的待辦事項</p>
@@ -38,7 +38,7 @@ function IsLoginHeader({ setCurrentPage }) {
           onClick={clearLocalStorage}
         />
       </div>
-    </main>
+    </div>
   );
 }
 
