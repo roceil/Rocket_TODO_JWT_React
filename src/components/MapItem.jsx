@@ -1,6 +1,8 @@
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import close from '../img/close.svg';
 import axios from 'axios';
+
+
 function MapItem({ content, id, getData, url, headers, completed_at }) {
   const isCheck = useRef(completed_at !== null ? true : false);
   const deleteData = async (id) => {

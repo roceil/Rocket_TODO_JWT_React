@@ -3,7 +3,6 @@ import './main.css';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import IsLogin from './pages/IsLogin';
-// import SignUp from './components/SignUp';
 
 function App() {
   const [currentPage, setCurrentPage] = useState();

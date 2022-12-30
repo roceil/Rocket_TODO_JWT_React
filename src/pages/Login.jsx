@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import IsLogin from './IsLogin';
@@ -7,30 +7,109 @@ import '../main.css';
 import left from '../img/left.svg';
 const url = 'https://todoo.5xcamp.us/users/sign_in';
 
-const LoginApi = async (emailTxt, passwordTxt, setCurrentPage) => {
-  try {
-    const res = await axios.post(url, {
-      user: {
-        email: emailTxt,
-        password: passwordTxt,
-      },
-    });
-    const { nickname } = res.data;
-    const { authorization } = res.headers;
-    localStorage.setItem('authorization', authorization);
-    localStorage.setItem('userName', nickname);
-    const { message } = res.data;
-    alert(message);
-    setCurrentPage('IsLogin');
-  } catch (error) {
-    console.log(error);
-    const { message } = error.response.data;
-    alert(`${message}，請重新輸入帳號密碼`);
-  }
+const accountAlert = () => {
+  let timerInterval;
+  Swal.fire({
+    icon: 'error',
+    title: '登入失敗',
+    html: ' 請確認帳號密碼有無輸入 ',
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading();
+      const b = Swal.getHtmlContainer().querySelector('b');
+      timerInterval = setInterval(() => {
+        b.textContent = Swal.getTimerLeft();
+      }, 1000);
+    },
+    willClose: () => {
+      clearInterval(timerInterval);
+    },
+  }).then((result) => {
+    /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+      console.log('I was closed by the timer');
+    }
+  });
 };
-function Login(props) {
-  // eslint-disable-next-line react/prop-types
-  const { setCurrentPage } = props;
+const loginFail = (message) => {
+  let timerInterval;
+  Swal.fire({
+    icon: 'error',
+    title: message,
+    html: ' 請確認帳號密碼是否有誤 ',
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading();
+      const b = Swal.getHtmlContainer().querySelector('b');
+      timerInterval = setInterval(() => {
+        b.textContent = Swal.getTimerLeft();
+      }, 1000);
+    },
+    willClose: () => {
+      clearInterval(timerInterval);
+    },
+  }).then((result) => {
+    /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+      console.log('I was closed by the timer');
+    }
+  });
+};
+
+function Login({ setCurrentPage }) {
+  const loginSuccess = (message) => {
+    let timerInterval;
+    Swal.fire({
+      icon: 'success',
+      title: message,
+      html: '畫面即將跳轉...',
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        const b = Swal.getHtmlContainer().querySelector('b');
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft();
+        }, 1000);
+        console.log(1);
+      },
+
+      willClose: () => {
+        setCurrentPage('IsLogin');
+        clearInterval(timerInterval);
+      },
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer');
+      }
+    });
+  };
+  const LoginApi = async (emailTxt, passwordTxt) => {
+    try {
+      const res = await axios.post(url, {
+        user: {
+          email: emailTxt,
+          password: passwordTxt,
+        },
+      });
+      const { nickname } = res.data;
+      const { authorization } = res.headers;
+      localStorage.setItem('authorization', authorization);
+      localStorage.setItem('userName', nickname);
+      const { message } = res.data;
+      loginSuccess(message);
+
+    } catch (error) {
+      console.log(error);
+      const { message } = error.response.data;
+      loginFail(message);
+    }
+  };
+
+
   return (
     <>
       <div className="flex h-screen justify-center items-center container">
@@ -90,29 +169,7 @@ function Login(props) {
                   value="登入"
                   onClick={(e) => {
                     if (emailTxt.value === `` || passwordTxt.value === ``) {
-                      let timerInterval;
-
-                      Swal.fire({
-                        title: '請確認帳號密碼有無輸入',
-                        html: '將在 <b></b> 秒後關閉.',
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: () => {
-                          Swal.showLoading();
-                          const b = Swal.getHtmlContainer().querySelector('b');
-                          timerInterval = setInterval(() => {
-                            b.textContent = Swal.getTimerLeft();
-                          }, 100);
-                        },
-                        willClose: () => {
-                          clearInterval(timerInterval);
-                        },
-                      }).then((result) => {
-                        /* Read more about handling dismissals below */
-                        if (result.dismiss === Swal.DismissReason.timer) {
-                          console.log('I was closed by the timer');
-                        }
-                      });
+                      accountAlert();
                       return;
                     }
                     LoginApi(emailTxt.value, passwordTxt.value, setCurrentPage);

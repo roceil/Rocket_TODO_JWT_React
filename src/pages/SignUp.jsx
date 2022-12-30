@@ -1,11 +1,63 @@
 import React from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import logo from '../img/logo_lg.svg';
 import '../main.css';
 import left from '../img/left.svg';
 
 const url = 'https://todoo.5xcamp.us/users';
 
+const checkInput = () => {
+  let timerInterval
+  Swal.fire({
+    icon: 'error',
+    title: '註冊失敗',
+    html: '請檢查所有欄位有無空白',
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading()
+      const b = Swal.getHtmlContainer().querySelector('b')
+      timerInterval = setInterval(() => {
+        b.textContent = Swal.getTimerLeft()
+      }, 100)
+    },
+    willClose: () => {
+      clearInterval(timerInterval)
+    }
+  }).then((result) => {
+    /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+      console.log('I was closed by the timer')
+    }
+  })
+}
+
+const checkPassword = ()=>{
+  let timerInterval
+  Swal.fire({
+    icon: 'error',
+    title: '註冊失敗',
+    html: '密碼輸入不一致',
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading()
+      const b = Swal.getHtmlContainer().querySelector('b')
+      timerInterval = setInterval(() => {
+        b.textContent = Swal.getTimerLeft()
+      }, 100)
+    },
+    willClose: () => {
+      clearInterval(timerInterval)
+    }
+  }).then((result) => {
+    /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+      console.log('I was closed by the timer')
+    }
+  })
+}
 const SignUpApi = async (
   emailTxt,
   nicknameTxt,
@@ -19,11 +71,11 @@ const SignUpApi = async (
     passwordTxt === `` ||
     checkPasswordTxt === ``
   ) {
-    alert('請確認所有欄位是否都有輸入');
+    checkInput()
     return;
   }
   if (passwordTxt !== checkPasswordTxt) {
-    alert('兩次密碼不相同，請再次輸入');
+    checkPassword()
     return;
   }
   try {
