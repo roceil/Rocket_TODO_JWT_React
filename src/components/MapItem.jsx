@@ -52,7 +52,7 @@ function MapItem({ content, id, getData, url, headers, completed_at }) {
           id="checkbox"
           defaultChecked={isCheck.current}
           type="checkbox"
-          className={`appearance-none w-5 relative checkbox-after flex items-center`}
+          className={`appearance-none w-5  checkbox-after flex items-center`}
           onClick={() => {
             completedToggle(id);
           }}
